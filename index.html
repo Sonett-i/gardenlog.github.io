@@ -1,11 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GardenLog</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GardenLog — Track your plants, your way</title>
+  <meta name="description" content="A free, gardening-focused plant tracker built as a hobby project. Log your plants, get watering reminders, and keep your garden organised.">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <h3>GardenLog</h3>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="#" class="logo">Garden<span>Log</span></a>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#privacy">Privacy</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <span class="hero-badge">Free &amp; open hobby project</span>
+      <h1>Keep track of your garden,<br>not spreadsheets.</h1>
+      <p class="subtitle">
+        GardenLog is a simple plant tracker built by a gardener, for gardeners.
+        Log your plants, set watering reminders, and watch your garden grow &mdash; all in one place.
+      </p>
+      <div class="hero-actions">
+        <a href="https://app.gardenlog.au" class="btn btn-primary">Open GardenLog</a>
+        <a href="#features" class="btn btn-outline">See what it does</a>
+      </div>
+
+      <div class="hero-image-wrapper reveal scale-in">
+        <div class="hero-image-frame">
+          <div class="hero-image-bar">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="hero-image-placeholder">
+            <!-- Replace with: <img src="img/hero-screenshot.png" alt="GardenLog dashboard"> -->
+            App screenshot
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">Features</p>
+        <h2 class="section-heading">Everything you need, nothing you don't</h2>
+        <p class="section-desc">GardenLog focuses on the things that actually matter when you're growing plants at home.</p>
+      </div>
+
+      <div class="feature-grid stagger">
+        <div class="feature-card reveal">
+          <div class="feature-icon">&#127793;</div>
+          <h3>Plant Tracking</h3>
+          <p>Add your plants with photos, species info, and planting dates. See their age, germination rate, and current status at a glance.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">&#128221;</div>
+          <h3>Activity Logs</h3>
+          <p>Record sprouting, flowering, harvesting, pest issues, and more. Every log is timestamped and supports multiple photos.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">&#128371;</div>
+          <h3>Watering Reminders</h3>
+          <p>Set per-plant watering intervals and get push notifications when it's time to water. Works on mobile and desktop.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">&#127759;</div>
+          <h3>Garden Zones</h3>
+          <p>Organise plants by location. Track shade levels and sun direction for each zone in your garden.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">&#128270;</div>
+          <h3>Plant Database</h3>
+          <p>Search an external plant database to auto-fill scientific names, care requirements, and growing information.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">&#128241;</div>
+          <h3>Works on Any Device</h3>
+          <p>Built as a progressive web app. Install it on your phone or use it in any browser &mdash; no app store needed.</p>
+        </div>
+      </div>
+
+      <!-- Showcase: Plant detail -->
+      <div class="showcase reveal" style="margin-top: 3.5rem;">
+        <div class="showcase-text">
+          <h3>Your plants at a glance</h3>
+          <p>Every plant gets its own card with status badges, age tracking, and quick access to logs. Tap in to see the full timeline, edit details, or add a new entry.</p>
+        </div>
+        <div class="showcase-image reveal from-right">
+          <div class="showcase-image-placeholder">
+            <!-- Replace with: <img src="img/plant-cards.png" alt="Plant cards view"> -->
+            Plant cards screenshot
+          </div>
+        </div>
+      </div>
+
+      <!-- Showcase: Logs timeline -->
+      <div class="showcase reverse reveal" style="margin-top: 3.5rem;">
+        <div class="showcase-text">
+          <h3>A timeline of every milestone</h3>
+          <p>From the day you plant a seed to the first harvest, every event is logged with photos and notes. Scroll back through your garden's history anytime.</p>
+        </div>
+        <div class="showcase-image reveal from-left">
+          <div class="showcase-image-placeholder">
+            <!-- Replace with: <img src="img/timeline.png" alt="Plant timeline view"> -->
+            Timeline screenshot
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About / Philosophy -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">About</p>
+        <h2 class="section-heading">Why GardenLog exists</h2>
+      </div>
+
+      <div class="story-block reveal">
+        <p>
+          GardenLog is a hobby project. It wasn't built to make money or compete with anything &mdash; it was built because I wanted a straightforward way to keep track of my own plants.
+        </p>
+        <p>
+          I grew tired of forgetting when I last watered something, losing track of which seeds actually sprouted, and scattering plant notes across half a dozen places. So I built the tool I wanted to use.
+        </p>
+        <p>
+          It's free, it's focused entirely on gardening, and it does what it says on the tin. No ads, no upsells, no premium tiers. Just a plant tracker made by someone who gardens.
+        </p>
+
+        <ul class="highlight-list">
+          <li>Free to use</li>
+          <li>Gardening-focused</li>
+          <li>Hobby project</li>
+          <li>No ads</li>
+          <li>No premium tier</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Privacy & Data -->
+  <section id="privacy">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">Your data</p>
+        <h2 class="section-heading">Simple app, simple data</h2>
+        <p class="section-desc">GardenLog collects very little data. That's intentional.</p>
+      </div>
+
+      <div class="privacy-grid">
+        <div class="privacy-card stores reveal from-left">
+          <h3>What GardenLog stores</h3>
+          <ul>
+            <li>A username</li>
+            <li>An email address</li>
+            <li>A securely hashed password</li>
+            <li>Plant data and plant logs you choose to enter</li>
+          </ul>
+          <p class="privacy-summary">That's it. Refreshingly rare.</p>
+        </div>
+
+        <div class="privacy-card does-not reveal from-right">
+          <h3>What GardenLog does not do</h3>
+          <ul>
+            <li>Sell or share your data</li>
+            <li>Run ads</li>
+            <li>Track you across other sites</li>
+            <li>Collect analytics beyond basic server operation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="disclaimer reveal" style="margin-top: 2.5rem;">
+        <p>
+          GardenLog is a hobby project provided as-is.
+          While I do my best to keep it reliable, it shouldn't be relied on as the sole source of care for your plants.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 GardenLog</p>
+      <a href="https://app.gardenlog.au">Open GardenLog</a>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var reveals = document.querySelectorAll('.reveal');
+
+      if (prefersReduced) {
+        reveals.forEach(function (el) { el.classList.add('visible'); });
+        return;
+      }
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+      reveals.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
 </body>
 </html>
