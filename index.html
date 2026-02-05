@@ -16,6 +16,7 @@
       <nav>
         <a href="#features">Features</a>
         <a href="#about">About</a>
+        <a href="#stack">Stack</a>
         <a href="#privacy">Privacy</a>
       </nav>
     </div>
@@ -42,7 +43,7 @@
           </div>
           <div class="hero-image-placeholder">
             <!-- Replace with: <img src="img/hero-screenshot.png" alt="GardenLog dashboard"> -->
-            App screenshot
+            <img src="img/site02.png" alt="GardenLog dashboard">
           </div>
         </div>
       </div>
@@ -105,7 +106,7 @@
         <div class="showcase-image reveal from-right">
           <div class="showcase-image-placeholder">
             <!-- Replace with: <img src="img/plant-cards.png" alt="Plant cards view"> -->
-            Plant cards screenshot
+            <img src="img/cards00.png" alt="Plant cards view">
           </div>
         </div>
       </div>
@@ -119,7 +120,7 @@
         <div class="showcase-image reveal from-left">
           <div class="showcase-image-placeholder">
             <!-- Replace with: <img src="img/timeline.png" alt="Plant timeline view"> -->
-            Timeline screenshot
+            <img src="img/timeline02.png" alt="Plant timeline view">
           </div>
         </div>
       </div>
@@ -134,24 +135,82 @@
         <h2 class="section-heading">Why GardenLog exists</h2>
       </div>
 
-      <div class="story-block reveal">
-        <p>
-          GardenLog is a hobby project. It wasn't built to make money or compete with anything &mdash; it was built because I wanted a straightforward way to keep track of my own plants.
-        </p>
-        <p>
-          I grew tired of forgetting when I last watered something, losing track of which seeds actually sprouted, and scattering plant notes across half a dozen places. So I built the tool I wanted to use.
-        </p>
-        <p>
-          It's free, it's focused entirely on gardening, and it does what it says on the tin. No ads, no upsells, no premium tiers. Just a plant tracker made by someone who gardens.
-        </p>
+      <div class="about-layout">
+        <div class="story-block reveal">
+          <p>
+            GardenLog is a hobby project. It wasn't built to make money or compete with anything &mdash; it was built because I wanted a straightforward way to keep track of my own plants.
+          </p>
+          <p>
+            I grew tired of forgetting when I last watered something, losing track of which seeds actually sprouted, and scattering plant notes across half a dozen places. So I built the tool I wanted to use.
+          </p>
+          <p>
+            It's free, it's focused entirely on gardening, and it does what it says on the tin. No ads, no upsells, no premium tiers. Just a plant tracker made by someone who gardens.
+          </p>
 
-        <ul class="highlight-list">
-          <li>Free to use</li>
-          <li>Gardening-focused</li>
-          <li>Hobby project</li>
-          <li>No ads</li>
-          <li>No premium tier</li>
-        </ul>
+          <ul class="highlight-list">
+            <li>Free to use</li>
+            <li>Gardening-focused</li>
+            <li>Hobby project</li>
+            <li>No ads</li>
+            <li>No premium tier</li>
+          </ul>
+        </div>
+
+        <div class="about-image reveal from-right">
+          <div class="about-image-placeholder">
+            <!-- Replace with: <img src="img/dog-and-plants.jpg" alt="The head gardener supervising"> -->
+            <img src="img/albert.jpg" alt="The head gardener supervising">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section id="stack">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">Under the hood</p>
+        <h2 class="section-heading">How it's built</h2>
+        <p class="section-desc">GardenLog is a full-stack project built and operated by one person. Here's the entire stack, end to end.</p>
+      </div>
+
+      <div class="stack-grid stagger">
+        <div class="stack-item reveal">
+          <span class="stack-role">Frontend</span>
+          <h3>React</h3>
+          <p>Single-page app built with React and Vite. Installable as a PWA with push notification support.</p>
+        </div>
+
+        <div class="stack-item reveal">
+          <span class="stack-role">Backend</span>
+          <h3>Node.js + Express</h3>
+          <p>REST API with JWT authentication, input validation, and scheduled tasks for watering reminders.</p>
+        </div>
+
+        <div class="stack-item reveal">
+          <span class="stack-role">Database</span>
+          <h3>PostgreSQL via Neon</h3>
+          <p>Serverless Postgres. Twelve tables covering users, plants, logs, zones, notifications, and preferences.</p>
+        </div>
+
+        <div class="stack-item reveal">
+          <span class="stack-role">Hosting</span>
+          <h3>Railway</h3>
+          <p>Runs both the React frontend and Express backend. Handles deployments straight from the repository.</p>
+        </div>
+
+        <div class="stack-item reveal">
+          <span class="stack-role">Source &amp; CI</span>
+          <h3>GitHub</h3>
+          <p>Hosts the code repository, manages staging environments, and runs scheduled database backups.</p>
+        </div>
+
+        <div class="stack-item reveal">
+          <span class="stack-role">Images</span>
+          <h3>Cloudinary</h3>
+          <p>CDN-hosted image storage. Plant photos and log images are optimised and served from the edge.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -197,6 +256,11 @@
     </div>
   </section>
 
+  <!-- Back to top -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
@@ -212,19 +276,43 @@
 
       if (prefersReduced) {
         reveals.forEach(function (el) { el.classList.add('visible'); });
-        return;
+      } else {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+        reveals.forEach(function (el) { observer.observe(el); });
       }
 
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      /* Back to top */
+      var btn = document.getElementById('back-to-top');
+      var scrollThreshold = 600;
+      var ticking = false;
 
-      reveals.forEach(function (el) { observer.observe(el); });
+      function onScroll() {
+        if (!ticking) {
+          window.requestAnimationFrame(function () {
+            if (window.scrollY > scrollThreshold) {
+              btn.classList.add('visible');
+            } else {
+              btn.classList.remove('visible');
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      btn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     })();
   </script>
 </body>
