@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GardenLog — Track your plants, your way</title>
-  <meta name="description" content="A free, gardening-focused plant tracker built as a hobby project. Log your plants, get watering reminders, and keep your garden organised.">
+  <meta name="description" content="A free, gardening-focused plant tracker. Log your plants, get watering reminders, plan your garden, and contribute to a community plant-observation database.">
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -15,6 +15,7 @@
       <a href="#" class="logo">Garden<span>Log</span></a>
       <nav>
         <a href="#features">Features</a>
+        <a href="#plantdb">PlantDB</a>
         <a href="#about">About</a>
         <a href="#stack">Stack</a>
         <a href="#privacy">Privacy</a>
@@ -28,8 +29,8 @@
       <span class="hero-badge">Free &amp; open hobby project</span>
       <h1>Keep track of your garden,<br>not spreadsheets.</h1>
       <p class="subtitle">
-        GardenLog is a simple plant tracker built by a gardener, for gardeners.
-        Log your plants, set watering reminders, and watch your garden grow &mdash; all in one place.
+        GardenLog is a plant tracker built by a gardener, for gardeners.
+        Log your plants, set reminders, plan your garden, and contribute to a community plant-observation database &mdash; all in one place.
       </p>
       <div class="hero-actions">
         <a href="https://app.gardenlog.au" class="btn btn-primary">Open GardenLog</a>
@@ -63,37 +64,55 @@
         <div class="feature-card reveal">
           <div class="feature-icon">&#127793;</div>
           <h3>Plant Tracking</h3>
-          <p>Add your plants with photos, species info, and planting dates. See their age, germination rate, and current status at a glance.</p>
+          <p>Add plants with photos, species info, growing medium, and planting dates. See age, germination rate, and status at a glance.</p>
         </div>
 
         <div class="feature-card reveal">
           <div class="feature-icon">&#128221;</div>
           <h3>Activity Logs</h3>
-          <p>Record sprouting, flowering, harvesting, pest issues, and more. Every log is timestamped and supports multiple photos.</p>
+          <p>Record sprouting, flowering, harvesting, pest issues, and more. Every log is timestamped, supports multiple photos, and captures environment conditions.</p>
         </div>
 
         <div class="feature-card reveal">
-          <div class="feature-icon">&#128371;</div>
-          <h3>Watering Reminders</h3>
-          <p>Set per-plant watering intervals and get push notifications when it's time to water. Works on mobile and desktop.</p>
+          <div class="feature-icon">&#128276;</div>
+          <h3>Smart Reminders</h3>
+          <p>Set watering, hardening, and grow-light reminders per plant or zone. Get push notifications and complete, skip, or snooze from any device.</p>
         </div>
 
         <div class="feature-card reveal">
           <div class="feature-icon">&#127759;</div>
           <h3>Garden Zones</h3>
-          <p>Organise plants by location. Track shade levels and sun direction for each zone in your garden.</p>
+          <p>Organise plants by location. Track shade levels, sun direction, and grow-light setup for each zone. Drag-and-drop plants between zones in the kanban view.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">&#128197;</div>
+          <h3>Garden Planner</h3>
+          <p>Plan sowing, repotting, flowering, and harvest events on a calendar. Link events to plants or zones and add notes.</p>
         </div>
 
         <div class="feature-card reveal">
           <div class="feature-icon">&#128270;</div>
-          <h3>Plant Database</h3>
-          <p>Search an external plant database to auto-fill scientific names, care requirements, and growing information.</p>
+          <h3>Plant Search</h3>
+          <p>Search an external plant database to auto-fill scientific names, care requirements, and growing information for your plants.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">&#127760;</div>
+          <h3>PlantDB Community</h3>
+          <p>Opt in to share anonymised plant observations with PlantDB &mdash; a community database that helps gardeners learn from each other.</p>
         </div>
 
         <div class="feature-card reveal">
           <div class="feature-icon">&#128241;</div>
           <h3>Works on Any Device</h3>
-          <p>Built as a progressive web app. Install it on your phone or use it in any browser &mdash; no app store needed.</p>
+          <p>Installable as a progressive web app with push notifications. Three view modes &mdash; kanban board, grid, or list &mdash; to suit how you work.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">&#127912;</div>
+          <h3>Themes &amp; Languages</h3>
+          <p>Light, dark, or system theme. Available in English and German with automatic language detection.</p>
         </div>
       </div>
 
@@ -123,6 +142,53 @@
             <img src="img/timeline02.png" alt="Plant timeline view">
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PlantDB -->
+  <section id="plantdb">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-label">Community</p>
+        <h2 class="section-heading">PlantDB &mdash; growing knowledge together</h2>
+        <p class="section-desc">PlantDB is an external community plant-observation database. GardenLog users can opt in to share anonymised plant data and help build a public dataset of plant growth patterns.</p>
+      </div>
+
+      <div class="plantdb-grid stagger">
+        <div class="plantdb-card reveal">
+          <div class="plantdb-icon">&#9989;</div>
+          <h3>Completely opt-in</h3>
+          <p>During onboarding you're asked if you'd like to participate. You can change your mind any time in Settings &mdash; no pressure, no hidden defaults.</p>
+        </div>
+
+        <div class="plantdb-card reveal">
+          <div class="plantdb-icon">&#128373;</div>
+          <h3>Anonymised data</h3>
+          <p>Your user ID is never sent. Only plant names, species, log types, measurements, and growing conditions are shared &mdash; nothing that identifies you.</p>
+        </div>
+
+        <div class="plantdb-card reveal">
+          <div class="plantdb-icon">&#128200;</div>
+          <h3>Observations &amp; sowings</h3>
+          <p>Every log you record (sprouted, flowering, harvested, etc.) and every plant you create can become a data point that helps other gardeners understand what to expect.</p>
+        </div>
+
+        <div class="plantdb-card reveal">
+          <div class="plantdb-icon">&#128161;</div>
+          <h3>Contribution stats</h3>
+          <p>See how many observations you've contributed on your dashboard &mdash; including a 7-day activity chart and milestone counters.</p>
+        </div>
+      </div>
+
+      <div class="plantdb-how reveal" style="margin-top: 2.5rem;">
+        <h3>How it works</h3>
+        <ol class="plantdb-steps">
+          <li>You create or update a plant log in GardenLog as normal.</li>
+          <li>If you've opted in, an anonymised copy of the observation is queued in the background.</li>
+          <li>A background worker delivers queued events to the PlantDB API every 30 seconds.</li>
+          <li>The data appears in PlantDB at <a href="https://db.gardenlog.au" target="_blank" rel="noopener">db.gardenlog.au</a>, available to the community.</li>
+        </ol>
       </div>
     </div>
   </section>
@@ -178,20 +244,20 @@
       <div class="stack-grid stagger">
         <div class="stack-item reveal">
           <span class="stack-role">Frontend</span>
-          <h3>React</h3>
-          <p>Single-page app built with React and Vite. Installable as a PWA with push notification support.</p>
+          <h3>React 19 + Vite</h3>
+          <p>Single-page app with drag-and-drop kanban (dnd-kit), i18next localisation, and installable as a PWA with push notifications.</p>
         </div>
 
         <div class="stack-item reveal">
           <span class="stack-role">Backend</span>
-          <h3>Node.js + Express</h3>
-          <p>REST API with JWT authentication, input validation, and scheduled tasks for watering reminders.</p>
+          <h3>Node.js + Express 5</h3>
+          <p>REST API with JWT auth, Joi validation, cron-based reminder scheduler, and a background outbox worker for PlantDB sync.</p>
         </div>
 
         <div class="stack-item reveal">
           <span class="stack-role">Database</span>
           <h3>PostgreSQL via Neon</h3>
-          <p>Serverless Postgres. Twelve tables covering users, plants, logs, zones, notifications, and preferences.</p>
+          <p>Serverless Postgres. Seventeen tables covering users, plants, logs, zones, reminders, planner events, preferences, and the PlantDB outbox.</p>
         </div>
 
         <div class="stack-item reveal">
@@ -209,7 +275,7 @@
         <div class="stack-item reveal">
           <span class="stack-role">Images</span>
           <h3>Cloudinary</h3>
-          <p>CDN-hosted image storage. Plant photos and log images are optimised and served from the edge.</p>
+          <p>CDN-hosted image storage with client-side compression. Photos are auto-optimised and served from the edge.</p>
         </div>
       </div>
     </div>
@@ -245,6 +311,13 @@
             <li>Collect analytics beyond basic server operation</li>
           </ul>
         </div>
+      </div>
+
+      <div class="privacy-plantdb reveal" style="margin-top: 1.5rem;">
+        <h3>PlantDB &amp; your data</h3>
+        <p>
+          If you opt in to PlantDB, anonymised plant observations are shared with the community database. Your user ID is never included &mdash; only plant names, species, log types, measurements, and growing conditions are sent. You can toggle this on or off at any time in Settings, and any data already queued will still be delivered, but no new events will be created once you opt out.
+        </p>
       </div>
 
       <div class="disclaimer reveal" style="margin-top: 2.5rem;">
