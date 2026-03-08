@@ -26,7 +26,7 @@
   <!-- Hero -->
   <section class="hero">
     <div class="container">
-      <span class="hero-badge">Free &amp; open hobby project</span>
+      <span class="hero-badge">Soft launch &mdash; free &amp; open</span>
       <h1>Keep track of your garden,<br>not spreadsheets.</h1>
       <p class="subtitle">
         GardenLog is a plant tracker built by a gardener, for gardeners.
@@ -143,6 +143,34 @@
           </div>
         </div>
       </div>
+
+      <!-- Showcase: Propagation -->
+      <div class="showcase reveal" style="margin-top: 3.5rem;">
+        <div class="showcase-text">
+          <h3>Seed to garden, tracked every step</h3>
+          <p>The propagation module gives you a visual grid for every tray. Track germination cell by cell, paint cells with seed brushes, mix your own growing medium, and graduate seedlings directly into your plant list when they're ready.</p>
+        </div>
+        <div class="showcase-image reveal from-right">
+          <div class="showcase-image-placeholder">
+            <!-- Replace with: <img src="img/propagation.png" alt="GardenLog propagation tray view"> -->
+            <span class="placeholder-label">GardenLog &mdash; Propagation view</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Showcase: Kanban -->
+      <div class="showcase reverse reveal" style="margin-top: 3.5rem;">
+        <div class="showcase-text">
+          <h3>Your garden as a board</h3>
+          <p>Switch to the kanban view to see every plant arranged by zone. Drag plants between zones, see status badges at a glance, and filter by group &mdash; the board remembers your last active layout.</p>
+        </div>
+        <div class="showcase-image reveal from-left">
+          <div class="showcase-image-placeholder">
+            <!-- Replace with: <img src="img/kanban.png" alt="GardenLog kanban board view"> -->
+            <span class="placeholder-label">GardenLog &mdash; Kanban board view</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -190,6 +218,35 @@
           <li>The data appears in PlantDB at <a href="https://db.gardenlog.au" target="_blank" rel="noopener">db.gardenlog.au</a>, available to the community.</li>
         </ol>
       </div>
+
+      <!-- Showcase: PlantDB -->
+      <div class="showcase reveal" style="margin-top: 3.5rem;">
+        <div class="showcase-text">
+          <h3>A living dataset, built by gardeners</h3>
+          <p>PlantDB collects anonymised observations from GardenLog users to build a public dataset of real plant growth patterns. Browse germination rates, growth timelines, and seasonal trends by species and climate profile.</p>
+          <p>Your contribution stats &mdash; observation count, a 7-day activity chart, and milestone counters &mdash; are visible right on your GardenLog dashboard.</p>
+        </div>
+        <div class="showcase-image reveal from-right">
+          <div class="showcase-image-placeholder">
+            <!-- Replace with: <img src="img/plantdb-dashboard.png" alt="PlantDB community dashboard"> -->
+            <span class="placeholder-label">PlantDB &mdash; Community dashboard</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Showcase: PlantDB stats in GardenLog -->
+      <div class="showcase reverse reveal" style="margin-top: 3.5rem;">
+        <div class="showcase-text">
+          <h3>See your impact inside GardenLog</h3>
+          <p>The Stats tab in GardenLog pulls live data from PlantDB so you can see how your observations compare against community benchmarks &mdash; germination rates, days to first flower, and more &mdash; without leaving the app.</p>
+        </div>
+        <div class="showcase-image reveal from-left">
+          <div class="showcase-image-placeholder">
+            <!-- Replace with: <img src="img/plantdb-stats.png" alt="PlantDB stats panel inside GardenLog"> -->
+            <span class="placeholder-label">GardenLog &mdash; PlantDB stats panel</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -197,28 +254,47 @@
   <section id="about">
     <div class="container">
       <div class="section-header reveal">
-        <p class="section-label">About</p>
-        <h2 class="section-heading">Why GardenLog exists</h2>
+        <p class="section-label">About &amp; Philosophy</p>
+        <h2 class="section-heading">Why GardenLog exists &mdash; and how it's built</h2>
       </div>
 
       <div class="about-layout">
         <div class="story-block reveal">
           <p>
-            GardenLog is a hobby project. It wasn't built to make money or compete with anything &mdash; it was built because I wanted a straightforward way to keep track of my own plants.
+            GardenLog started as a simple plant tracker and grew into something more complete &mdash; not by chasing features, but by following real needs. Every part of the app was built to solve a problem I actually had.
           </p>
           <p>
-            I grew tired of forgetting when I last watered something, losing track of which seeds actually sprouted, and scattering plant notes across half a dozen places. So I built the tool I wanted to use.
+            The propagation module came from losing track of which cells had germinated. The kanban board came from wanting to see my whole garden spatially. The PlantDB integration came from wanting observations to be useful beyond my own backyard.
           </p>
           <p>
-            It's free, it's focused entirely on gardening, and it does what it says on the tin. No ads, no upsells, no premium tiers. Just a plant tracker made by someone who gardens.
+            The philosophy hasn't changed along the way. GardenLog will always be free, ad-free, and focused on gardening &mdash; nothing else. No engagement metrics, no premium tiers, no dark patterns.
           </p>
+
+          <div class="philosophy-grid">
+            <div class="philosophy-item">
+              <span class="philosophy-heading">Privacy by design</span>
+              <p>The minimum data needed, nothing more. PlantDB sharing is always opt-in. Your user identity is never included in what gets shared.</p>
+            </div>
+            <div class="philosophy-item">
+              <span class="philosophy-heading">No bloat</span>
+              <p>Every feature solves a real gardening problem. If it doesn't help you grow plants better, it doesn't belong here.</p>
+            </div>
+            <div class="philosophy-item">
+              <span class="philosophy-heading">Right tool, not fashionable tool</span>
+              <p>Vanilla CSS. React Context instead of a state library. PostgreSQL without an ORM. Simple, maintainable, and easy to reason about.</p>
+            </div>
+            <div class="philosophy-item">
+              <span class="philosophy-heading">Community, not extraction</span>
+              <p>PlantDB exists to make gardening knowledge free and shared. Data flows in one direction: from gardeners, back to gardeners.</p>
+            </div>
+          </div>
 
           <ul class="highlight-list">
             <li>Free to use</li>
-            <li>Gardening-focused</li>
-            <li>Hobby project</li>
             <li>No ads</li>
             <li>No premium tier</li>
+            <li>Privacy-first</li>
+            <li>Hobby project</li>
           </ul>
         </div>
 

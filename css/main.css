@@ -764,6 +764,49 @@ section + section {
   line-height: 1.65;
 }
 
+/* ── Screenshot placeholder label ── */
+
+.placeholder-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 1rem;
+  letter-spacing: 0.02em;
+}
+
+/* ── Philosophy grid (inside About) ── */
+
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1.5rem 0 0.25rem;
+}
+
+.philosophy-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.125rem;
+}
+
+.philosophy-heading {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.01em;
+}
+
+.philosophy-item p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin: 0;
+}
+
 /* ── Scroll reveal ── */
 
 .reveal {
@@ -980,6 +1023,10 @@ section + section {
   .about-layout {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+
+  .philosophy-grid {
+    grid-template-columns: 1fr;
   }
 
   .privacy-grid {
