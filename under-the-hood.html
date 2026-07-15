@@ -52,7 +52,7 @@
         <div class="section-header reveal">
           <p class="section-label">The stack</p>
           <h2 class="section-heading">How it's built, end to end</h2>
-          <p class="section-desc">Ten pieces, each doing one job, run and maintained by one person.</p>
+          <p class="section-desc">“The main systems behind the application, each with a focused responsibility.</p>
         </div>
 
         <div class="stack-grid stagger">
@@ -95,7 +95,7 @@
           <div class="stack-item reveal">
             <span class="stack-role">PWA</span>
             <h3>Installable, offline-aware</h3>
-            <p>GardenLog installs on mobile and desktop like a native app, with a service worker enabling partial offline access.</p>
+            <p>GardenLog can be installed on supported mobile and desktop browsers. Its service worker supports push notifications and selected cached application resources.</p>
           </div>
 
           <div class="stack-item reveal">
@@ -107,13 +107,13 @@
           <div class="stack-item reveal">
             <span class="stack-role">Hosting</span>
             <h3>Railway + GitHub</h3>
-            <p>Railway runs both the frontend and backend and deploys straight from the repository. GitHub hosts the source, manages staging environments, and runs scheduled database backups.</p>
+            <p>Railway runs both the frontend and backend and deploys straight from the repository. Railway hosts the deployed application, with the source and deployment workflow managed through Github. Railway manages staging environments, and runs scheduled database backups.</p>
           </div>
 
           <div class="stack-item reveal">
             <span class="stack-role">Privacy</span>
             <h3>Minimal by default</h3>
-            <p>The minimum data needed to run the app, nothing collected for its own sake. See the full breakdown below.</p>
+            <p>Account, preference and gardening data needed to provide the features users enable. See the full breakdown below.</p>
           </div>
         </div>
       </div>
@@ -125,11 +125,11 @@
         <div class="section-header reveal">
           <p class="section-label">PlantDB integration</p>
           <h2 class="section-heading">How PlantDB delivery works</h2>
-          <p class="section-desc">A transactional outbox pattern, so a slow or unreachable PlantDB never blocks or loses your data.</p>
+          <p class="section-desc">A transactional outbox pattern, so a slow or temporarily unreachable PlantDB does not block the GardenLog request and queued events can be retried. So a temporary delivery failure does not discard the queued event.</p>
         </div>
 
         <p class="reveal uth-prose">
-          When you opt in, creating or updating a plant or a log does two things in the same database write: it saves your record, and &mdash; if the plant has enough information and you haven't opted out for that plant &mdash; it queues an anonymised copy in an outbox table. A background worker polls that queue on a short interval and posts new events to the PlantDB API. If PlantDB is temporarily unreachable, nothing is lost: the event stays queued and is retried automatically on a later pass, up to a limited number of attempts. Your user identity is never part of the payload.
+          When you opt in, creating or updating a plant or a log does two things within the same database transaction: it saves your record, and &mdash; if the plant has enough information and you haven't opted out for that plant &mdash; it queues an anonymised copy in an outbox table. A background worker polls that queue on a short interval and posts new events to the PlantDB API. If PlantDB is temporarily unreachable, nothing is lost: the event stays queued and is retried automatically on a later pass, up to a limited number of attempts. Your user identity is never part of the payload.
         </p>
 
         <div class="arch-diagram-wrapper reveal">
@@ -174,7 +174,7 @@
           <li>Eligible events are queued alongside the write that created them, so nothing is lost if delivery fails.</li>
           <li>Delivery happens asynchronously &mdash; a background worker polls the queue and posts new events to the PlantDB API.</li>
           <li>Failed deliveries are retried automatically, up to a limited number of attempts, before being marked as failed.</li>
-          <li>Your user identity is deliberately left out of every payload &mdash; there's no way to trace an observation back to an account.</li>
+          <li>Your user identity is deliberately left out of every payload. Your GardenLog user ID and account details are deliberately excluded from every PlantDB payload.</li>
         </ul>
       </div>
     </section>
@@ -187,7 +187,7 @@
           <h2 class="section-heading">Minimal by default</h2>
         </div>
         <p class="reveal uth-prose">
-          GardenLog stores a username, an email address, a securely hashed password, and the garden data you create &mdash; plants, zones, logs, reminders, propagation records, and preferences. There's no advertising, no selling of user data, no cross-site tracking, and no analytics beyond basic server operation. PlantDB sharing is opt-in and excludes your user identity. See the <a href="index.html#about">privacy summary on the homepage</a>.
+          GardenLog stores a username, an email address, a securely hashed password, and the garden data you create &mdash; plants, zones, logs, reminders, propagation records, and preferences. There's no advertising, no selling of user data, no cross-site tracking.GardenLog does not use advertising or cross-site tracking and does not intentionally collect behavioural analytics beyond operational logging. PlantDB sharing is opt-in and excludes your user identity. See the <a href="index.html#about">privacy summary on the homepage</a>.
         </p>
       </div>
     </section>
