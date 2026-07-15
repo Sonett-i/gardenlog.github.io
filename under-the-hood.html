@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Under the Hood — GardenLog</title>
+  <meta name="description" content="How GardenLog is built: the frontend, backend, database, PlantDB integration, hosting, and privacy architecture behind the app.">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">Garden<span>Log</span></a>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="site-nav" aria-label="Primary">
+        <a href="index.html#problem">Problem</a>
+        <a href="index.html#what-it-does">Features</a>
+        <a href="index.html#product">Product</a>
+        <a href="index.html#why">Story</a>
+        <a href="under-the-hood.html" aria-current="page">Under the Hood</a>
+        <a href="https://app.gardenlog.au" class="nav-cta">Open GardenLog</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Intro -->
+    <section class="hero uth-hero">
+      <div class="container">
+        <p class="hero-badge">Technical overview</p>
+        <h1>Under the Hood</h1>
+        <p class="subtitle">
+          GardenLog is a full-stack application built and operated as a personal project. This page explains the architecture, technical choices, integrations, and the systems that support the public app.
+        </p>
+        <div class="hero-actions">
+          <a href="https://app.gardenlog.au" class="btn btn-primary">Open GardenLog</a>
+          <a href="index.html" class="btn btn-outline">&larr; Back to GardenLog</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- The stack -->
+    <section id="stack">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-label">The stack</p>
+          <h2 class="section-heading">How it's built, end to end</h2>
+          <p class="section-desc">Ten pieces, each doing one job, run and maintained by one person.</p>
+        </div>
+
+        <div class="stack-grid stagger">
+          <div class="stack-item reveal">
+            <span class="stack-role">Frontend</span>
+            <h3>React 19 + Vite</h3>
+            <p>Single-page app with drag-and-drop kanban (@dnd-kit), i18next localisation in English and German, and 25 vanilla CSS files &mdash; no CSS framework.</p>
+          </div>
+
+          <div class="stack-item reveal">
+            <span class="stack-role">Backend</span>
+            <h3>Node.js + Express 5</h3>
+            <p>REST API with JWT auth, Joi request validation, a node-cron reminder scheduler, and a background worker that delivers events to PlantDB.</p>
+          </div>
+
+          <div class="stack-item reveal">
+            <span class="stack-role">Database</span>
+            <h3>PostgreSQL via Neon</h3>
+            <p>Serverless Postgres. 26 tables covering users, plants, logs, zones, reminders, propagation, planner events, preferences, and the PlantDB outbox. Idempotent <code>CREATE TABLE IF NOT EXISTS</code> scripts &mdash; no migration framework.</p>
+          </div>
+
+          <div class="stack-item reveal">
+            <span class="stack-role">Auth &amp; validation</span>
+            <h3>JWT + Joi</h3>
+            <p>JWT session tokens are set in HTTP-only cookies. Passwords are securely hashed before storage. Every request body is validated with Joi before it reaches the database.</p>
+          </div>
+
+          <div class="stack-item reveal">
+            <span class="stack-role">Images</span>
+            <h3>Cloudinary</h3>
+            <p>Uploaded photos are compressed client-side, stored in Cloudinary, and served from its CDN.</p>
+          </div>
+
+          <div class="stack-item reveal">
+            <span class="stack-role">Reminders</span>
+            <h3>node-cron + web-push</h3>
+            <p>A scheduler checks for due reminders every minute and sends push notifications via web-push (VAPID). A service worker lets you complete a reminder straight from the notification.</p>
+          </div>
+
+          <div class="stack-item reveal">
+            <span class="stack-role">PWA</span>
+            <h3>Installable, offline-aware</h3>
+            <p>GardenLog installs on mobile and desktop like a native app, with a service worker enabling partial offline access.</p>
+          </div>
+
+          <div class="stack-item reveal">
+            <span class="stack-role">PlantDB</span>
+            <h3>Optional community sync</h3>
+            <p>GardenLog can send anonymised observations to PlantDB, a separate community database, using a reliable delivery pattern &mdash; explained below.</p>
+          </div>
+
+          <div class="stack-item reveal">
+            <span class="stack-role">Hosting</span>
+            <h3>Railway + GitHub</h3>
+            <p>Railway runs both the frontend and backend and deploys straight from the repository. GitHub hosts the source, manages staging environments, and runs scheduled database backups.</p>
+          </div>
+
+          <div class="stack-item reveal">
+            <span class="stack-role">Privacy</span>
+            <h3>Minimal by default</h3>
+            <p>The minimum data needed to run the app, nothing collected for its own sake. See the full breakdown below.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PlantDB architecture -->
+    <section id="plantdb-architecture">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-label">PlantDB integration</p>
+          <h2 class="section-heading">How PlantDB delivery works</h2>
+          <p class="section-desc">A transactional outbox pattern, so a slow or unreachable PlantDB never blocks or loses your data.</p>
+        </div>
+
+        <p class="reveal uth-prose">
+          When you opt in, creating or updating a plant or a log does two things in the same database write: it saves your record, and &mdash; if the plant has enough information and you haven't opted out for that plant &mdash; it queues an anonymised copy in an outbox table. A background worker polls that queue on a short interval and posts new events to the PlantDB API. If PlantDB is temporarily unreachable, nothing is lost: the event stays queued and is retried automatically on a later pass, up to a limited number of attempts. Your user identity is never part of the payload.
+        </p>
+
+        <div class="arch-diagram-wrapper reveal">
+          <div class="arch-diagram">
+            <div class="arch-node">
+              <span class="arch-node-label">Browser</span>
+              <p>React PWA</p>
+            </div>
+            <div class="arch-arrow" aria-hidden="true">&rarr;</div>
+            <div class="arch-node">
+              <span class="arch-node-label">GardenLog API</span>
+              <p>Express, JWT auth</p>
+            </div>
+            <div class="arch-arrow" aria-hidden="true">&rarr;</div>
+            <div class="arch-node">
+              <span class="arch-node-label">Database</span>
+              <p>PostgreSQL (Neon)</p>
+            </div>
+          </div>
+          <div class="arch-diagram arch-diagram-branch">
+            <div class="arch-arrow arch-arrow-down" aria-hidden="true">&darr; if opted in</div>
+          </div>
+          <div class="arch-diagram">
+            <div class="arch-node arch-node-muted">
+              <span class="arch-node-label">Outbox queue</span>
+              <p>Written with the same transaction</p>
+            </div>
+            <div class="arch-arrow" aria-hidden="true">&rarr;</div>
+            <div class="arch-node arch-node-muted">
+              <span class="arch-node-label">Background worker</span>
+              <p>Polls and delivers asynchronously</p>
+            </div>
+            <div class="arch-arrow" aria-hidden="true">&rarr;</div>
+            <div class="arch-node arch-node-muted">
+              <span class="arch-node-label">PlantDB API</span>
+              <p>No user identity included</p>
+            </div>
+          </div>
+        </div>
+
+        <ul class="dot-list reveal">
+          <li>Eligible events are queued alongside the write that created them, so nothing is lost if delivery fails.</li>
+          <li>Delivery happens asynchronously &mdash; a background worker polls the queue and posts new events to the PlantDB API.</li>
+          <li>Failed deliveries are retried automatically, up to a limited number of attempts, before being marked as failed.</li>
+          <li>Your user identity is deliberately left out of every payload &mdash; there's no way to trace an observation back to an account.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Privacy & data design -->
+    <section id="privacy-design">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-label">Privacy &amp; data design</p>
+          <h2 class="section-heading">Minimal by default</h2>
+        </div>
+        <p class="reveal uth-prose">
+          GardenLog stores a username, an email address, a securely hashed password, and the garden data you create &mdash; plants, zones, logs, reminders, propagation records, and preferences. There's no advertising, no selling of user data, no cross-site tracking, and no analytics beyond basic server operation. PlantDB sharing is opt-in and excludes your user identity. See the <a href="index.html#about">privacy summary on the homepage</a>.
+        </p>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+      <div class="container">
+        <h2 class="section-heading">Curious to see it running?</h2>
+        <p class="section-desc">GardenLog is free, ad-free, and available as a web app on mobile and desktop.</p>
+        <div class="hero-actions">
+          <a href="https://app.gardenlog.au" class="btn btn-primary">Open GardenLog</a>
+          <a href="index.html" class="btn btn-outline">Back to homepage</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 GardenLog</p>
+      <nav aria-label="Footer">
+        <a href="index.html">Home</a>
+        &nbsp;&middot;&nbsp;
+        <a href="https://app.gardenlog.au">Open GardenLog</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
